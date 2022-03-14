@@ -17,6 +17,8 @@ services:
     container_name: back1
     ports:
       - "6001:6001"
+    links:
+      - db
   backend2:
     environment:
       - PORT=6002
@@ -26,6 +28,8 @@ services:
     container_name: back2
     ports:
       - "6002:6002"
+    links:
+      - db
   backend3:
     environment:
       - PORT=6003
@@ -35,6 +39,8 @@ services:
     container_name: back3
     ports:
       - "6003:6003"
+    links:
+      - db
 
   db:
     image: mongo:3.6.1
