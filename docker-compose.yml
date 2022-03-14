@@ -1,0 +1,43 @@
+version: '2'
+services:
+  web:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      -"6000:6000"
+  backend1:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: back1
+    ports:
+      -"6001:6001"
+  backend2:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: back2
+    ports:
+      -"6002:6002"
+  backend3:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: back3
+    ports:
+      -"6003:6003"
+
+  db:
+    image: mongo:3.6.1
+    container_name: db
+    volumes:
+      -mongodb:/data/db
+      -mongodb_config:/data/configdb
+    ports:
+      -27017:27017
+    command: mongod
+volumes:
+  mongodb:
+  mongodb_config:
