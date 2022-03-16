@@ -41,7 +41,7 @@ public class MongoConexion {
             Document updated = new Document().append("$inc", new Document().append("id", -1));
             collection.updateMany(Filters.gt("id",0),updated);
         }
-        collection.insertOne(new Document().append("Fecha de inserción",formatter.format(new Date())).append("value", a).append("id",(int)collection.countDocuments()));
+        collection.insertOne(new Document().append("fecha",formatter.format(new Date())).append("value", a).append("id",(int)collection.countDocuments()));
         ArrayList<String> res = new ArrayList<>();
         collection.find().forEach((Consumer<Document>) (Document d) -> { d.remove("_id");d.remove("id");res.add(d.toJson());});
         mongoClient.close();

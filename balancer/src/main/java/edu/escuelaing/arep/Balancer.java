@@ -6,6 +6,8 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import javax.swing.text.Position;
+
 public class Balancer {
 
     private static ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<String>() {
@@ -17,8 +19,10 @@ public class Balancer {
     };
 
     public static void main(String[] args) {
+        staticFiles.location("/public");
         port(getPort());
-        post("/", (req, res) -> {
+        post("/balancer", (req, res) -> {
+            res.header("Access-Control-Allow-Origin","*");
             res.type("application/json");
             return balancer(req.queryParams("value"));
         });

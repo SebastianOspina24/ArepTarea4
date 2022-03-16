@@ -1,13 +1,6 @@
 version: '2'
 
 services:
-  web:
-    build:
-      context: ./front
-      dockerfile: Dockerfile
-    container_name: web
-    ports:
-      - "8700:6000"
   backend1:
     environment:
       - PORT=35001
